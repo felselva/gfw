@@ -507,7 +507,7 @@ done:
 /* Vertex Data */
 void gfw_vertex_data_clear(struct gfw_vertex_data *vertex_data)
 {
-	uint32_t i = vertex_data->count;
+	uint32_t i = 0;
 	while (i < vertex_data->range) {
 		vertex_data->buffer[i] = 0;
 		i++;
@@ -518,7 +518,7 @@ bool gfw_vertex_data_push(struct gfw_vertex_data *vertex_data, uint8_t *data, si
 {
 	bool success = true;
 	uint32_t i = 0;
-	if (vertex_data->count + size >= vertex_data->range) {
+	if (vertex_data->count + size > vertex_data->range) {
 		success = false;
 #ifdef GFW_PRINT_BACKEND_ERROR
 		printf("Warning: not enough space in vertex data for data.\n");
